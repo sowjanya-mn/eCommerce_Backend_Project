@@ -1,0 +1,45 @@
+{
+  "name": "ecommerce_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --env-file=.env.development.local --watch --conditions development src/app.ts"
+  },
+  "imports": {
+    "#db": {
+      "default": "./src/db/index.ts",
+      "development": "./dist/db/index.js"
+    },
+    "#controllers": {
+      "default": "./src/controllers/index.ts",
+      "development": "./dist/controllers/index.js"
+    },
+    "#routes": {
+      "default": "./src/routes/index.ts",
+      "development": "./dist/routes/index.js"
+    },
+    "#types": {
+      "default": "./src/types/index.ts",
+      "development": "./dist/types/index.js"
+    },
+    "#models": {
+      "default": "./src/models/index.ts",
+      "development": "./dist/models/index.js"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.5.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.9.5"
+  }
+}
