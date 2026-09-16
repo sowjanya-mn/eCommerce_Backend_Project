@@ -38,8 +38,6 @@ import { Types } from "mongoose";
  *         total:
  *           type: number
  *           minimum: 0
- *           exclusiveMinimum: true
- *           description: The total cost of the order. Must be greater than zero.
  */
 
 export const orderInputSchema = z.strictObject({
@@ -58,7 +56,7 @@ export const orderInputSchema = z.strictObject({
     )
     .min(1, { message: "An order must contain at least one product" }),
 
-  total: z.number({}).gt(0, { message: "Total must be greater than zero" }),
+  total: z.number(),
 });
 
 /**

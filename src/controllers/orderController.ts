@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import { Order, User } from "#models";
+import { Order, User, Product } from "#models";
 import type { OrderType } from "#types";
 import e from "express";
 import { orderInputSchema } from "#schemas";
@@ -137,11 +137,28 @@ export const createOrder: RequestHandler<
     if (!products || products.length === 0) {
       return res.status(400).json({ error: "Products list cannot be empty" });
     }
+    const productIds = products.map((p) => p.productId);
+    const dbProducts = await Product.find({ _id: { $in: productIds } }).lean();
+
+    if (dbProducts.length !== products.length) {
+      return res
+        .status(400)
+        .json({ error: "One or more products in your cart are invalid." });
+    }
+
+    const priceMap = new Map(
+      dbProducts.map((p) => [p._id.toString(), p.price]),
+    );
+
+    const calculatedTotal = products.reduce((sum, item) => {
+      const price = priceMap.get(item.productId.toString()) || 0;
+      return sum + price * item.quantity;
+    }, 0);
 
     const newOrderDoc = await Order.create({
       userId,
       products,
-      total,
+      total: calculatedTotal,
     });
 
     const order = newOrderDoc.toObject() as any;
