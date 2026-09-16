@@ -6,11 +6,20 @@ import {
   updateUser,
   deleteUser,
 } from "#controllers";
+
+import { validateBody } from "#middlewares";
+import { userInputSchema } from "#schemas";
+
 const userRouter = Router();
-userRouter.get("/", getUsers);
-userRouter.post("/", createUser);
-userRouter.get("/:id", getUserById);
-userRouter.put("/:id", updateUser);
-userRouter.delete("/:id", deleteUser);
+userRouter
+  .route("/")
+  .get(getUsers)
+  .post(validateBody(userInputSchema), createUser);
+
+userRouter
+  .route("/:id")
+  .get(getUserById)
+  .put(validateBody(userInputSchema), updateUser)
+  .delete(deleteUser);
 
 export default userRouter;

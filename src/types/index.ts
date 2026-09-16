@@ -1,3 +1,5 @@
+import type { ObjectId } from "mongoose";
+
 export type UserType = {
   name: string;
   email: string;
@@ -12,7 +14,7 @@ export type ProductType = {
   name: string;
   description: string;
   price: number;
-  category: string;
+  categoryId: string;
 };
 
 export type OrderType = {

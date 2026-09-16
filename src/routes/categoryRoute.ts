@@ -7,12 +7,19 @@ import {
   deleteCategory,
 } from "#controllers";
 
+import { validateBody } from "#middlewares";
+import { categoryInputSchema } from "#schemas";
+
 const categoryRouter = Router();
 
-categoryRouter.get("/", getCategories);
-categoryRouter.post("/", createCategory);
-categoryRouter.get("/:id", getCategoryById);
-categoryRouter.put("/:id", updateCategory);
-categoryRouter.delete("/:id", deleteCategory);
+categoryRouter
+  .route("/")
+  .get(getCategories)
+  .post(validateBody(categoryInputSchema), createCategory);
+categoryRouter
+  .route("/:id")
+  .get(getCategoryById)
+  .put(validateBody(categoryInputSchema), updateCategory)
+  .delete(deleteCategory);
 
 export default categoryRouter;

@@ -21,3 +21,11 @@ export {
   updateProduct,
   deleteProduct,
 } from "./productController.ts";
+
+export {
+  getAllOrders,
+  createOrder,
+  getOrderById,
+  updateOrder,
+  deleteOrder,
+} from "./orderController.ts";

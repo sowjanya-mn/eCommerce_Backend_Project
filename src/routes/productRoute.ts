@@ -7,12 +7,20 @@ import {
   deleteProduct,
 } from "#controllers";
 
+import { validateBody } from "#middlewares";
+import { productInputSchema } from "#schemas";
+
 const productRouter = Router();
 
-productRouter.get("/", getAllProducts);
-productRouter.post("/", createProduct);
-productRouter.get("/:id", getProductById);
-productRouter.put("/:id", updateProduct);
-productRouter.delete("/:id", deleteProduct);
+productRouter
+  .route("/")
+  .get(getAllProducts)
+  .post(validateBody(productInputSchema), createProduct);
+
+productRouter
+  .route("/:id")
+  .get(getProductById)
+  .put(validateBody(productInputSchema), updateProduct)
+  .delete(deleteProduct);
 
 export default productRouter;

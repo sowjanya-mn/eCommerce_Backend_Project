@@ -27,6 +27,14 @@
     "#models": {
       "default": "./src/models/index.ts",
       "development": "./dist/models/index.js"
+    },
+    "#schemas": {
+      "default": "./src/schemas/index.ts",
+      "development": "./dist/schemas/index.js"
+    },
+    "#middlewares": {
+      "default": "./src/middlewares/index.ts",
+      "development": "./dist/middlewares/index.js"
     }
   },
   "keywords": [],
@@ -36,10 +44,15 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^26.5.0",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1",
     "typescript": "^7.0.2"
   },
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.9.5"
+    "mongoose": "^9.9.5",
+    "zod": "^4.6.5"
   }
 }
