@@ -1,27 +1,3 @@
-// import { Router } from "express";
-// import swaggerJSDoc, { type Options } from "swagger-jsdoc";
-// import packageJson from "../../package.json" with { type: "json" };
-
-// const docsRoutes = Router();
-
-// const options: Options = {
-//   definition: {
-//     openapi: "3.1.0",
-//     info: {
-//       title: "eCommerce API",
-//       version: packageJson.version,
-//     },
-//   },
-//   apis: ["./src/controllers/*.{ts,js}", "./src/schemas/*.{ts,js}"],
-// };
-
-// export const swaggerSpec = swaggerJSDoc(options);
-
-// docsRoutes.get("/openapi.json", (req, res) => {
-//   res.json(swaggerSpec);
-// });
-
-// export default docsRoutes;
 import { Router } from "express";
 import swaggerJSDoc, { type Options } from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
